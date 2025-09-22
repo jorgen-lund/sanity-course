@@ -22,6 +22,7 @@ export type Event = {
   name?: string;
   slug?: Slug;
   eventType?: "in-person" | "virtual";
+  format?: "in-person" | "virtual";
   date?: string;
   doorsOpen?: number;
   venue?: {
@@ -234,6 +235,7 @@ export type EVENT_QUERYResult = {
   name?: string;
   slug?: Slug;
   eventType?: "in-person" | "virtual";
+  format?: "in-person" | "virtual";
   date: string;
   doorsOpen: number | 0;
   venue: {

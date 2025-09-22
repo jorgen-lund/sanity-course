@@ -41,10 +41,22 @@ export const eventType = defineType({
       name: "eventType",
       type: "string",
       group: "details",
+      deprecated: {
+        reason: "Use 'format' instead"
+      },
+      readOnly: true,
       options: {
         list: ["in-person", "virtual"],
         layout: "radio",
       }
+    }),
+    defineField({
+      name: 'format',
+      type: 'string',
+      options: {
+        list: ['in-person', 'virtual'],
+        layout: 'radio',
+      },
     }),
     defineField({
       name: 'date',
@@ -92,7 +104,7 @@ export const eventType = defineType({
       of: [{ type: "block" }],
     }),
   ],
-  
+
   // Update the preview key in the schema
   preview: {
     select: {
