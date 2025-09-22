@@ -45,6 +45,7 @@ export const eventType = defineType({
         reason: "Use 'format' instead"
       },
       readOnly: true,
+      hidden: true,
       options: {
         list: ["in-person", "virtual"],
         layout: "radio",
@@ -57,6 +58,7 @@ export const eventType = defineType({
         list: ['in-person', 'virtual'],
         layout: 'radio',
       },
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'date',
