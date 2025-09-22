@@ -52,7 +52,7 @@ export const eventType = defineType({
       group: "details",
     }),
     defineField({
-      name: "doorsopen",
+      name: "doorsOpen",
       type: "number",
       group: "details",
       description: "Number of minutes before the admission opens",
@@ -90,8 +90,9 @@ export const eventType = defineType({
       type: "array",
       group: "editorial",
       of: [{ type: "block" }],
-    })
+    }),
   ],
+  
   // Update the preview key in the schema
   preview: {
     select: {

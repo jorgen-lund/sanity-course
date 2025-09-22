@@ -1,8 +1,10 @@
 import { defineQuery, PortableText } from "next-sanity";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import Image from "next/image";
 
 import { sanityFetch } from "@/sanity/live";
+import { urlFor } from "@/sanity/image";
 
 const EVENT_QUERY = defineQuery(`*[
     _type == "event" &&
@@ -35,8 +37,9 @@ export default async function EventPage({
     eventType,
     doorsOpen,
     venue,
-    tickets,
   } = event;
+
+  const tickets = venue?.tickets;
 
   const eventDate = new Date(date).toDateString();
   const eventTime = new Date(date).toLocaleTimeString();
@@ -44,7 +47,14 @@ export default async function EventPage({
     new Date(date).getTime() - doorsOpen * 60000
   ).toLocaleTimeString();
 
-  const imageUrl = "https://placehold.co/550x310/png";
+  const imageUrl = headline?.photo
+    ? urlFor(headline.photo)
+        .height(310)
+        .width(550)
+        .quality(80)
+        .auto("format")
+        .url()
+    : "https://placehold.co/550x310/png";
 
   return (
     <main className="container mx-auto grid gap-12 p-12">
@@ -57,7 +67,7 @@ export default async function EventPage({
         </Link>
       </div>
       <div className="grid items-top gap-12 sm:grid-cols-2">
-        <img
+        <Image
           src={imageUrl}
           alt={name || "Event"}
           className="mx-auto aspect-video overflow-hidden rounded-xl object-cover object-center sm:w-full"
