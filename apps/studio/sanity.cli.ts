@@ -1,6 +1,9 @@
 import {defineCliConfig} from 'sanity/cli'
 
 export default defineCliConfig({
+  server: {
+    port: 3334,
+  },
   api: {
     projectId: '8axa8dtr',
     dataset: 'production'
